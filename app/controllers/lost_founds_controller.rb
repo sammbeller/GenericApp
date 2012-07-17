@@ -1,5 +1,5 @@
 class LostFoundsController < ApplicationController
-  before_filter :signed_in_user except: [:index, :show]
+  before_filter :signed_in_user, except: [:index, :show]
   # GET /lost_founds
   # GET /lost_founds.json
   def index
@@ -42,6 +42,8 @@ class LostFoundsController < ApplicationController
   # POST /lost_founds.json
   def create
     @lost_found = LostFound.new(params[:lost_found])
+    @lost_found.user_id = current_user.id
+    @lost_found.approved = true
 
     respond_to do |format|
       if @lost_found.save

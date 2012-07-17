@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120620141753) do
+ActiveRecord::Schema.define(:version => 20120715200403) do
+
+  create_table "lost_founds", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "descr"
+    t.boolean  "approved"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

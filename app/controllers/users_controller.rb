@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @lost_founds = LostFound.find_by_user_id(@user.id)
   end
 
   def new

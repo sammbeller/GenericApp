@@ -1,11 +1,10 @@
-<h1>Listing lost_founds</h1>
+<h1>Listing All Items</h1>
 
 <table>
   <tr>
     <th>User</th>
     <th>Title</th>
-    <th>Descr</th>
-    <th>Approved</th>
+    <th>Created</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,13 +12,13 @@
 
 <% @lost_founds.each do |lost_found| %>
   <tr>
-    <td><%= lost_found.user_id %></td>
-    <td><%= lost_found.title %></td>
-    <td><%= lost_found.descr %></td>
-    <td><%= lost_found.approved %></td>
-    <td><%= link_to 'Show', lost_found %></td>
+    <td><%= link_to lost_found.user_id, user_path(lost_found.user_id) %></td>
+    <td><%= link_to lost_found.title, lost_found_path(lost_found) %></td>
+    <td><%= lost_found.created_at %></td>
+    <% if signed_in? && current_user.id == lost_found.user_id %>
     <td><%= link_to 'Edit', edit_lost_found_path(lost_found) %></td>
     <td><%= link_to 'Destroy', lost_found, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
